@@ -1,7 +1,14 @@
-# WordPressTemplate
+# 【WordPress】docker-composeを使ってWordPress環境を作る
 
 ## 概要(About)
 AWSやGCPでWordPressを使ってサイトを構築したい時にDocker-composeを使うと一発で出来るようなので、テンプレとしてメモを残します。
+全くファイルを変更しなくても動くはずです！
+
+## ダウンロード(Download)
+```
+$ git clone https://github.com/BambooTuna/WordPressTemplate.git
+```
+[Githubリポジトリ](https://github.com/BambooTuna/WordPressTemplate.git)
 
 ## 設定(Settings)
 - 基本的に変更する箇所は`.env`のみで、DBのパスワードなどを厳重なものに変更してください。
