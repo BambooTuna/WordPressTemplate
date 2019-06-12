@@ -16,7 +16,7 @@ WORDPRESS_DB_USER=admin
 WORDPRESS_DB_PASSWORD=pass
 ```
 
-- コンテナ内のデータをローカルの`./contents``./backup``./log`に紐付けしています、独自のディレクトリを指定したい場合は、変更してください。
+- コンテナ内のデータをローカルの`./contents` `./backup` `./log`に紐付けしています、独自のディレクトリを指定したい場合は、変更してください。
 ```
 volumes:
   - ./contents:/var/www/html
