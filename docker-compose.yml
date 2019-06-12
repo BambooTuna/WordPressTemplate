@@ -1,0 +1,32 @@
+version: "3.4"
+
+services:
+  db:
+    image: mysql:5.7.22
+    restart: always # OS起動時にコンテナを自動起動
+    container_name: contents-db
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    env_file: .env # 環境変数に外部ファイルを指定
+
+  wordpress:
+    image: wordpress:latest
+    restart: always # OS起動時にコンテナを自動起動
+    container_name: wordpress
+    ports:
+      - 80:80
+    volumes:
+      - ./contents:/var/www/html
+      - ./backup:/tmp/backup
+      - ./log:/tmp/log
+#    build: . # テーマ、プラグインのファイルアップロード時のサイズ制限を引き上げたい時はコメントアウトしてください。php.ini(制限引き上げ処理)がコンテナに転送されます。
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: contents-db:3306 # db の container_name と同じものを指定
+    env_file: .env # 環境変数に外部ファイルを指定
+
+volumes:
+  db_data:
