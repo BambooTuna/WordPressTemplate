@@ -68,4 +68,4 @@ $ source ~/.bashrc
 ```
 
 ## 一つのサーバーに複数のサイトを作りたい（追記）
-(一つのサーバーに複数のサイトを作りたい)[https://github.com/BambooTuna/WordPressTemplate/blob/master/MultipleServers/README.md]
+[一つのサーバーに複数のサイトを作りたい](https://github.com/BambooTuna/WordPressTemplate/blob/master/MultipleServers/README.md)
