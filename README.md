@@ -23,7 +23,7 @@ WORDPRESS_DB_USER=admin
 WORDPRESS_DB_PASSWORD=pass
 ```
 
-- コンテナ内のデータをローカルの`./contents` `./backup` `./log`に紐付けしています、独自のディレクトリを指定したい場合は、変更してください。
+- コンテナ内のデータをローカルの`./volume/contents` `./volume/backup` `./volume/log`に紐付けしています、独自のディレクトリを指定したい場合は、変更してください。
 ```
 volumes:
   - ./volume/contents:/var/www/html
@@ -31,7 +31,7 @@ volumes:
   - ./volume/log:/tmp/log
 ```
 
-- ファイルアップロードサイズ制限を引き上げたい方は、`php.ini`を編集し、`build: .`行をコメントアウトしてください。
+- ファイルアップロードサイズ制限を引き上げたい方は、`./volume/contents/php.ini`を編集してください。
 ```
 memory_limit = 30M
 post_max_size = 30M
