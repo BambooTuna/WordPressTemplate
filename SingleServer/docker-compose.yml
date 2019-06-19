@@ -1,0 +1,28 @@
+version: "3.4"
+
+services:
+  db:
+    image: mysql:5.7.22
+    restart: always # OS起動時にコンテナを自動起動
+    ports:
+      - 3306:3306 # 同一サーバーで複数のサイトヲッ建てるときは左の 3306 が被らないようにする　例：33061:3306
+    volumes:
+      - ./volume/mysql/data:/var/lib/mysql
+    env_file: .env # 環境変数に外部ファイルを指定
+  wordpress:
+    image: wordpress:latest
+    restart: always # OS起動時にコンテナを自動起動
+    ports:
+      - 80:80 # 同一サーバーで複数のサイトヲッ建てるときは左の 80 が被らないようにする　例：81:80
+    volumes:
+      - ./volume/contents:/var/www/html
+      - ./volume/backup:/tmp/backup
+      - ./volume/log:/tmp/log
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306 # db の ports(:の右の数字) を指定
+    env_file: .env # 環境変数に外部ファイルを指定
+
+volumes:
+  db_data:
