@@ -49,6 +49,17 @@ $ docker-compose up -d
 VPS上で起動した場合は、そちらの外部IPでアクセスしてください。
 
 ## その他(Other)
+### httpへのアクセスをhttpsにリダイレクトする
+`./volume/contents/.htaccess`or`/var/www/html/.htaccess`の先頭に以下を追記  
+普通に検索して出ているコードだと、リダイレクトループで落ちます。
+ロードバランサーを使っている場合は以下を使いましょう。  
+```
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^/?(.*) https://%{HTTP_HOST}/$1 [R,L]
+</IfModule>
+```
 ### GCPでdocker-composeをインストール
 GCPで通常のインストールしようとするとなぜか上手くいかないので、別の方法でインストールする。
 ```
