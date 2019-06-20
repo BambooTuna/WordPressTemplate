@@ -1,0 +1,50 @@
+version: "3.4"
+
+services:
+  dbA:
+    image: mysql:5.7.22
+    restart: always # OS起動時にコンテナを自動起動
+    ports:
+      - 33061:3306 # 同一サーバーで複数のサイトヲッ建てるときは左の 3306 が被らないようにする　例：33061:3306
+    volumes:
+      - ./volumeA/mysql/data:/var/lib/mysql
+    env_file: .envA # 環境変数に外部ファイルを指定
+  wordpressA:
+    image: wordpress:latest
+    restart: always # OS起動時にコンテナを自動起動
+    ports:
+      - 81:80 # 同一サーバーで複数のサイトヲッ建てるときは左の 80 が被らないようにする　例：81:80
+    volumes:
+      - ./volumeA/contents:/var/www/html
+      - ./volumeA/backup:/tmp/backup
+      - ./volumeA/log:/tmp/log
+    depends_on:
+      - dbA
+    environment:
+      WORDPRESS_DB_HOST: dbA:3306 # db の ports(:の右の数字) を指定
+    env_file: .envA # 環境変数に外部ファイルを指定
+  dbB:
+    image: mysql:5.7.22
+    restart: always # OS起動時にコンテナを自動起動
+    ports:
+      - 33062:3306 # 同一サーバーで複数のサイトヲッ建てるときは左の 3306 が被らないようにする　例：33061:3306
+    volumes:
+      - ./volumeB/mysql/data:/var/lib/mysql
+    env_file: .envB # 環境変数に外部ファイルを指定
+  wordpressB:
+    image: wordpress:latest
+    restart: always # OS起動時にコンテナを自動起動
+    ports:
+      - 82:80 # 同一サーバーで複数のサイトヲッ建てるときは左の 80 が被らないようにする　例：81:80
+    volumes:
+      - ./volumeB/contents:/var/www/html
+      - ./volumeB/backup:/tmp/backup
+      - ./volumeB/log:/tmp/log
+    depends_on:
+      - dbB
+    environment:
+      WORDPRESS_DB_HOST: dbB:3306 # db の ports(:の右の数字) を指定
+    env_file: .envB # 環境変数に外部ファイルを指定
+
+volumes:
+  db_data:

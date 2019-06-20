@@ -41,7 +41,7 @@ max_input_time = 120
 
 ## 使い方(Usage)
 ```
-$ cd ./WordPressTemplate
+$ cd ./WordPressTemplate/SingleServer
 $ docker-compose build
 $ docker-compose up -d
 ```
@@ -66,3 +66,6 @@ $ echo alias dc="'"'docker run --rm \
 ```
 $ source ~/.bashrc
 ```
+
+## 一つのサーバーに複数のサイトを作りたい（追記）
+[一つのサーバーに複数のサイトを作りたい](https://github.com/BambooTuna/WordPressTemplate/blob/master/MultipleServers/README.md)
