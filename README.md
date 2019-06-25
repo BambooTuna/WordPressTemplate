@@ -4,6 +4,8 @@
 AWSやGCPでWordPressを使ってサイトを構築したい時にDocker-composeを使うと一発で出来るようなので、テンプレとしてメモを残します。
 全くファイルを変更しなくても動くはずです！
 
+[ブログ記事](https://blog.bambootuna.com/wordpress/27/)
+
 ## ダウンロード(Download)
 ```
 $ git clone https://github.com/BambooTuna/WordPressTemplate.git
